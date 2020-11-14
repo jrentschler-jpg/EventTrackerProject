@@ -45,6 +45,7 @@ class WineTest {
 	void test_Wine_Entity_mapping() {
 		assertNotNull(wine);
 		assertEquals("LaCrema Pinot Noir", wine.getName());
+		assertEquals("Pinot Noir", wine.getType());
 	}
 
 }
