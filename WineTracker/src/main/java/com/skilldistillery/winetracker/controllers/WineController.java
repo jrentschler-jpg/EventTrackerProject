@@ -76,6 +76,7 @@ public class WineController {
 		wine = wineSvc.replaceById(id, wine);
 		return wine;
 	}
+	//DELETE api/wines/{id}
 	@DeleteMapping("wines/{id}")
 	public void deleteWine(@PathVariable Integer id,
 			HttpServletResponse response) {

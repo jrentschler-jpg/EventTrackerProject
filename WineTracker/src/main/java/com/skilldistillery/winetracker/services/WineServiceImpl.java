@@ -16,6 +16,9 @@ public class WineServiceImpl implements WineService {
 
 		@Autowired
 		private WineRepository wineRepo;
+		
+		
+		
 	@Override
 	public List<Wine> getAllWines() {
 		return wineRepo.findAll();
@@ -76,10 +79,10 @@ public class WineServiceImpl implements WineService {
 			Wine wine = wineOpt.get();
 			wineRepo.deleteById(id);
 			deleted = true;
-			
-			
 		}
 		return deleted;
 	}
+			
+			
 
 }
