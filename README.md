@@ -5,6 +5,10 @@
 
 ### How to run:
 
+#### MySQL Schema
+
+![alt text](https://raw.githubusercontent.com/jrentschler-jpg/MidtermProject/main/DB/winenotdb.png "MySQL Schema")
+
 ### Expected Routes
 
 | Return Type   | Route                                            | Functionality                  |
