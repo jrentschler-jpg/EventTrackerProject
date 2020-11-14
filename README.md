@@ -7,7 +7,7 @@
 
 #### MySQL Schema
 
-![alt text](https://raw.githubusercontent.com/jrentschler-jpg/MidtermProject/main/DB/winenotdb.png "MySQL Schema")
+![alt text](https://raw.githubusercontent.com/jrentschler-jpg/MidtermProject/main/DB/winetrackerdb.png "MySQL Schema")
 
 ### Expected Routes
 
