@@ -2,7 +2,7 @@
 ### Wine Tracker :wine_glass:
 __________________________________________________________
 ### Week 12 - REST API Weekend Project - Part I
-Part I of EventTracker [project] (https://github.com/SkillDistillery/SD27/blob/master/rest/EventTracker/README.md).
+Part I of EventTracker [project](https://github.com/SkillDistillery/SD27/blob/master/rest/EventTracker/README.md).
 
 #### MySQL Schema
 
@@ -49,7 +49,7 @@ Access the REST API by the following routes at [WineTracker](http://localhost:80
 ### Topics implemented:
 - Spring Data JPA - perform CRUD operations.
 - JSON (send/receive)
-- Test Driven Development with JUnit Juniper. 
+- Test Driven Development with JUnit Juniper.
 
 
 ### Lessons Learned:
