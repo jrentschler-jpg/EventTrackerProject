@@ -57,16 +57,37 @@ public class WineServiceImpl implements WineService {
 		Wine managedWine = null;
 		if(updateWine.isPresent()) {
 			managedWine = updateWine.get();
-			managedWine.setName(wine.getName());
-			managedWine.setType(wine.getType());
-			managedWine.setColor(wine.getColor());
-			managedWine.setFlavor(wine.getFlavor());
-			managedWine.setDescription(wine.getDescription());
-			managedWine.setRating(wine.getRating());
-			managedWine.setCost(wine.getCost());
-			managedWine.setYearProduced(wine.getYearProduced());
-			managedWine.setReview(wine.getReview());
-			managedWine.setImage(wine.getImage());
+			if(wine.getName()!= null) {
+				managedWine.setName(wine.getName());
+			}
+			if(wine.getType()!= null) {
+				managedWine.setType(wine.getType());
+			}
+			if(wine.getColor()!= null) {
+				managedWine.setColor(wine.getColor());
+			}
+			if(wine.getFlavor()!= null) {
+				managedWine.setFlavor(wine.getFlavor());
+			}
+			if(wine.getDescription()!= null) {
+				managedWine.setDescription(wine.getDescription());
+			}
+			if(wine.getRating()!= null) {
+				managedWine.setRating(wine.getRating());
+			}
+			if(wine.getCost()!= null) {
+				managedWine.setCost(wine.getCost());
+			}
+			if(wine.getYearProduced()!= null) {
+				managedWine.setYearProduced(wine.getYearProduced());
+			}
+			if(wine.getReview()!= null) {
+				managedWine.setReview(wine.getReview());
+			}
+			if(wine.getImage()!= null) {
+				managedWine.setImage(wine.getImage());
+			}
+				
 			wineRepo.saveAndFlush(managedWine);
 		}
 		return managedWine;
@@ -76,7 +97,8 @@ public class WineServiceImpl implements WineService {
 		boolean deleted = false;
 		Optional<Wine> wineOpt = wineRepo.findById(id);
 		if(wineOpt.isPresent()) {
-			Wine wine = wineOpt.get();
+//			Wine wine = wineOpt.get();
+			wineOpt.get();
 			wineRepo.deleteById(id);
 			deleted = true;
 		}

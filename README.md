@@ -1,5 +1,5 @@
 # EventTrackerProject
-### Wine Tracker
+### Wine Tracker :wine_glass:
 
 ### Overview
 
@@ -30,3 +30,6 @@
 
 
 ### Lessons Learned:
+
+### Stretch Goals:
+Supplemental mappings and controller routes for nested CRUD.

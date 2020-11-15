@@ -2,6 +2,7 @@ package com.skilldistillery.winetracker.controllers;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,8 +38,14 @@ public class WineController {
 	}
 	//GET api/wines/{id}
 	@GetMapping("wines/{id}")
-	public Wine findById(@PathVariable Integer id){
-		return wineSvc.getByWineId(id);
+	public Wine findById(@PathVariable Integer id,
+			HttpServletResponse response){
+		Wine wine = wineSvc.getByWineId(id);
+		if(wine == null) {
+			response.setStatus(404);
+		}
+//		return wineSvc.getByWineId(id);
+		return wine;
 	 
 	}
 	//GET api/wines/search/{keyword}
@@ -64,8 +71,21 @@ public class WineController {
 	}
 	//POST api/wines
 	@PostMapping("wines")
-	public Wine createWine(@RequestBody Wine wine) {
-		wine = wineSvc.createWine(wine);
+	public Wine createWine(@RequestBody Wine wine,
+			HttpServletRequest request,
+			HttpServletResponse response) {
+		try {
+			wine = wineSvc.createWine(wine);
+			response.setStatus(201);
+			StringBuffer url = request.getRequestURL();
+			url.append("/").append(wine.getId());
+			String urlstr = url.toString();
+			response.setHeader("Location", urlstr);
+			
+		} catch (Exception e) {
+			response.setStatus(400);
+			wine = null;
+		}
 		return wine;
 	}
 	//PUT api/wines/{id}
@@ -73,7 +93,16 @@ public class WineController {
 	public Wine replaceById(@PathVariable Integer id, 
 			@RequestBody Wine wine,
 			HttpServletResponse response) {
-		wine = wineSvc.replaceById(id, wine);
+		try {
+			wine = wineSvc.replaceById(id, wine);
+			if(wine == null) {
+				response.setStatus(404);
+//				wine = null;
+			}
+		} catch (Exception e) {
+			response.setStatus(400);
+			wine = null;
+		}
 		return wine;
 	}
 	//DELETE api/wines/{id}
