@@ -26,7 +26,12 @@ public class WineServiceImpl implements WineService {
 	@Override
 	public Wine getByWineId(int id) {
 		Optional<Wine> wineOpt = wineRepo.findById(id);
-		return wineOpt.get();
+		Wine wine = null;
+		if(wineOpt.isPresent()) {
+			wine = wineOpt.get();
+		}
+//		return wineOpt.get();
+		return wine;
 	}
 	@Override
 	public List<Wine> getWinesForKeyword(String keyword) {
