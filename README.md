@@ -12,7 +12,7 @@ Part I of EventTracker [project](https://github.com/SkillDistillery/SD27/blob/ma
 This program is designed to be a REST API that creates, reads, updates(replaces), and deletes wine data from a Database that I built using MySQL WorkBench and connecting it to Spring Data JPA.
 
 ### How to run:
-Access the REST API by the following routes at [WineTracker](http://localhost:8085/api/wines):
+Access the REST API by the following routes at [WineTracker](http://18.220.240.247:8080/WineTracker/api/wines):
 
 
 ### Expected Routes:
