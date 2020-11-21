@@ -1,7 +1,7 @@
 # EventTrackerProject
 ### Wine Tracker :wine_glass:
 __________________________________________________________
-### Week 12 - REST API Weekend Project - Part I
+### Week 12 - REST API Weekend Project 
 Part I of EventTracker [project](https://github.com/SkillDistillery/SD27/blob/master/rest/EventTracker/README.md).
 
 #### MySQL Schema
