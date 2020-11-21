@@ -4,6 +4,12 @@ window.addEventListener("load", function () {
 });
 function init() {
   console.log("in init()");
+  document.findAllWines.getAllWines.addEventListener('click', function(e){
+    e.preventDefault();
+    getAllWines();
+    
+  });
+
   document.wineForm.lookup.addEventListener('click', function(e){
     e.preventDefault();
     var id = document.wineForm.id.value;
@@ -19,7 +25,24 @@ function init() {
   //TODO: set up event listeners for buttons, etc.
 }
 //TODO: display the list of wines {GET, 'api/wines'}
-
+function getAllWines(){
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', 'api/wines');
+  xhr.onreadystatechange = function(){
+    if(xhr.readyState === 4){
+      if(xhr.status === 200){
+        let wines = JSON.parse(xhr.responseText);
+        displayAllWines(wines);
+      }
+      else {
+        console.error('Wine not found');
+        let divWine = document.getElementById('wineData');
+        divWine.textContent = 'Wine not found';
+      }
+    }
+  };
+  xhr.send();
+}
 //Gets the wines by their ID
 function getWinesById(id){
   console.log('getWinesById(): id=' + id);
@@ -40,6 +63,96 @@ function getWinesById(id){
     }
   };
   xhr.send();
+}
+//display list of all the wines
+function displayAllWines(wines){
+  var wineDiv = document.getElementById('wineData');
+  wineDiv.textContent = '';
+
+  var table = document.createElement('table');
+  var tableHead = document.createElement('thead');
+  var tableRow = document.createElement('tr');
+  var wineHeader = document.createElement('th');
+  var typeHeader = document.createElement('th');
+  var colorHeader = document.createElement('th');
+  var flavorHeader = document.createElement('th');
+  var descriptionHeader = document.createElement('th');
+  var ratingHeader = document.createElement('th');
+  var costHeader = document.createElement('th');
+  var yearProducedHeader = document.createElement('th');
+  var reviewHeader = document.createElement('th');
+  var imageHeader = document.createElement('th');
+  var tableBody = document.createElement('tbody');
+
+  wineHeader.textContent = 'Name';
+  typeHeader.textContent = 'Type';
+  colorHeader.textContent = 'Color';
+  flavorHeader.textContent = 'Flavor';
+  descriptionHeader.textContent = 'Description';
+  ratingHeader.textContent = 'Rating';
+  costHeader.textContent = 'Cost';
+  yearProducedHeader.textContent = 'Year Produced';
+  reviewHeader.textContent = 'Review';
+  imageHeader.textContent = 'Image';
+  wineDiv.appendChild(table);
+
+  table.appendChild(tableHead);
+  tableHead.appendChild(tableRow);
+  tableRow.appendChild(wineHeader);
+  tableRow.appendChild(typeHeader);
+  tableRow.appendChild(colorHeader);
+  tableRow.appendChild(flavorHeader);
+  tableRow.appendChild(descriptionHeader);
+  tableRow.appendChild(ratingHeader);
+  tableRow.appendChild(costHeader);
+  tableRow.appendChild(yearProducedHeader);
+  tableRow.appendChild(reviewHeader);
+  tableRow.appendChild(imageHeader);
+  table.appendChild(tableBody);
+
+  wines.forEach((wine, i) => {
+    var wineRow = document.createElement('tr');
+    var wineName = document.createElement('td');
+    var wineType = document.createElement('td');
+    var wineColor = document.createElement('td');
+    var wineFlavor = document.createElement('td');
+    var wineDescription = document.createElement('td');
+    var wineRating = document.createElement('td');
+    var wineCost = document.createElement('td');
+    var wineYearProduced = document.createElement('td');
+    var wineReview = document.createElement('td');
+    var wineImageBox = document.createElement('td');
+    var wineImage = document.createElement('img');
+    
+    wineName.textContent = wine.name;
+    wineType.textContent = wine.type;
+    wineColor.textContent = wine.color;
+    wineFlavor.textContent = wine.flavor;
+    wineDescription.textContent = wine.description;
+    wineRating.textContent = wine.rating;
+    wineCost.textContent = wine.cost;
+    wineYearProduced.textContent = wine.yearProduced;
+    wineReview.textContent = wine.review;
+    wineImage.src = wine.image;
+    // wineImage.maxWidth = 100;
+    wineImage.height = 100;
+    wineImageBox.appendChild(wineImage);
+
+    wineRow.appendChild(wineName);
+    wineRow.appendChild(wineType);
+    wineRow.appendChild(wineColor);
+    wineRow.appendChild(wineFlavor);
+    wineRow.appendChild(wineDescription);
+    wineRow.appendChild(wineRating);
+    wineRow.appendChild(wineCost);
+    wineRow.appendChild(wineYearProduced);
+    wineRow.appendChild(wineReview);
+    wineRow.appendChild(wineImageBox);
+
+    tableBody.appendChild(wineRow);
+
+  });
+
 }
 //displays the wine by id 
 function displayWine(wine){
@@ -129,3 +242,4 @@ function postNewWine(event){
 // xhr.send(JSON.stringify(updatedWine))
 
 // xhr.open('DELETE', api/winetracker/' + wineId);
+// xhr.send();
