@@ -110,7 +110,7 @@ public class WineController {
 	public void deleteWine(@PathVariable Integer id,
 			HttpServletResponse response) {
 		try {
-			boolean deleted = wineSvc.deleteReview(id);
+			boolean deleted = wineSvc.deleteWine(id);
 			if(deleted) {
 				response.setStatus(204);
 			}else {

@@ -15,5 +15,5 @@ public interface WineService {
 	
 	Wine createWine(Wine wine);
 	Wine replaceById(int id, Wine wine);
-	boolean deleteReview(int id);
+	boolean deleteWine(int id);
 }

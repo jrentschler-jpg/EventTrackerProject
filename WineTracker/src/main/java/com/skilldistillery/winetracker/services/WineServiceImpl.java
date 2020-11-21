@@ -98,7 +98,7 @@ public class WineServiceImpl implements WineService {
 		return managedWine;
 	}
 	@Override
-	public boolean deleteReview(int id) {
+	public boolean deleteWine(int id) {
 		boolean deleted = false;
 		Optional<Wine> wineOpt = wineRepo.findById(id);
 		if(wineOpt.isPresent()) {
