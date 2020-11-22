@@ -240,7 +240,7 @@ function displayWine(wine){
 
   document.deleteWineForm.delete.addEventListener('click', function(e){
       e.preventDefault();
-    deleteWineById(id);
+    deleteWineById(wine.id);
 
     });
   
