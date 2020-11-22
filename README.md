@@ -100,4 +100,4 @@ Understanding the capabilities of REST API to better learn how to connect to:
 * Send POST/PUT/DELETE requests with `XMLHttpRequest`
 
 ### Stretch Goals:
-Supplemental mappings and controller routes for nested CRUD.
+Supplemental mappings and controller routes for nested CRUD. Added additional search functions for the end user to search wines by name/type, year produced, rating, and costs.
