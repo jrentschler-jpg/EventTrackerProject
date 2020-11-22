@@ -97,6 +97,7 @@ function displayAllWines(wines){
   table.style.border = 'solid';
   var tableHead = document.createElement('thead');
   var tableRow = document.createElement('tr');
+  var wineIdHeader = document.createElement('th');
   var wineHeader = document.createElement('th');
   var typeHeader = document.createElement('th');
   var colorHeader = document.createElement('th');
@@ -109,6 +110,7 @@ function displayAllWines(wines){
   var imageHeader = document.createElement('th');
   var tableBody = document.createElement('tbody');
 
+  wineIdHeader.textContent = 'ID';
   wineHeader.textContent = 'Name';
   typeHeader.textContent = 'Type';
   colorHeader.textContent = 'Color';
@@ -123,6 +125,7 @@ function displayAllWines(wines){
 
   table.appendChild(tableHead);
   tableHead.appendChild(tableRow);
+  tableRow.appendChild(wineIdHeader);
   tableRow.appendChild(wineHeader);
   tableRow.appendChild(typeHeader);
   tableRow.appendChild(colorHeader);
@@ -138,6 +141,7 @@ function displayAllWines(wines){
   wines.forEach((wine, i) => {
     counter++;
     var wineRow = document.createElement('tr');
+    var wineId = document.createElement('td');
     var wineName = document.createElement('td');
     var wineType = document.createElement('td');
     var wineColor = document.createElement('td');
@@ -150,6 +154,7 @@ function displayAllWines(wines){
     var wineImageBox = document.createElement('td');
     var wineImage = document.createElement('img');
     
+    wineId.textContent = wine.id;
     wineName.textContent = wine.name;
     wineType.textContent = wine.type;
     wineColor.textContent = wine.color;
@@ -163,7 +168,7 @@ function displayAllWines(wines){
     wineImage.height = 100;
     wineImageBox.appendChild(wineImage);
 
-
+    wineRow.appendChild(wineId);
     wineRow.appendChild(wineName);
     wineRow.appendChild(wineType);
     wineRow.appendChild(wineColor);
