@@ -175,6 +175,10 @@ function displayAllWines(wines){
     wineRow.appendChild(wineImageBox);
 
     tableBody.appendChild(wineRow);
+    wineRow.addEventListener('click', function(e){
+      e.preventDefault();
+      getWinesById(wine.id);
+    })
   });
   wineCounter.textContent = counter + " wines found";
   wineDiv.appendChild(wineCounter);
@@ -264,8 +268,17 @@ function displayWine(wine){
       e.preventDefault();
     deleteWineById(wine.id);
 
-    });
   
+    });
+    br = document.createElement('br');
+    dataDiv.appendChild(btn);
+    btn = document.createElement('button');
+    btn.innerHTML = 'Show Wine List';
+    btn.addEventListener('click', function(e){
+      e.preventDefault();
+      getAllWines();
+    });
+    dataDiv.appendChild(btn);
 }
 //create a new Wine 'POST';
 function postNewWine(event){
