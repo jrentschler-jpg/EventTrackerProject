@@ -24,8 +24,8 @@ function init() {
   });
   document.searchWinesByName.lookupByKeyword.addEventListener('click', function(e){
     e.preventDefault();
-    let keyword1 = document.searchWinesByName.keyword.value;
-    searchByKeyword(keyword1);
+    let keyword = document.searchWinesByName.keyword.value;
+    searchByKeyword(keyword);
   });
   document.searchWinesByYearProduced.lookupByYearProduced.addEventListener('click', function(e){
     e.preventDefault();
