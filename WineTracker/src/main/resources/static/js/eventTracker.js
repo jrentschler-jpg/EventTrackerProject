@@ -1,9 +1,9 @@
 window.addEventListener("load", function () {
-  console.log("Script loaded");
+  // console.log("Script loaded");
   init();
 });
 function init() {
-  console.log("in init()");
+  // console.log("in init()");
   document.findAllWines.getAllWines.addEventListener('click', function(e){
     e.preventDefault();
     getAllWines();
@@ -22,9 +22,14 @@ function init() {
     e.preventDefault(e);
     postNewWine(e);
   });
+  document.searchWinesByName.lookupByKeyword.addEventListener('click', function(e){
+    e.preventDefault();
+    var keyword = document.searchWinesByName.keyword.value;
+    searchByKeyword(keyword);
+  });
   //TODO: set up event listeners for buttons, etc.
 }
-//TODO: display the list of wines {GET, 'api/wines'}
+//display the list of wines {GET, 'api/wines'}
 function getAllWines(){
   var xhr = new XMLHttpRequest();
   xhr.open('GET', 'api/wines');
@@ -70,6 +75,7 @@ function displayAllWines(wines){
   wineDiv.textContent = '';
 
   var table = document.createElement('table');
+  table.style.border = 'solid';
   var tableHead = document.createElement('thead');
   var tableRow = document.createElement('tr');
   var wineHeader = document.createElement('th');
@@ -137,6 +143,7 @@ function displayAllWines(wines){
     wineImage.height = 100;
     wineImageBox.appendChild(wineImage);
 
+
     wineRow.appendChild(wineName);
     wineRow.appendChild(wineType);
     wineRow.appendChild(wineColor);
@@ -168,31 +175,31 @@ function displayWine(wine){
   let ul = document.createElement('ul');
 
   let li = document.createElement('li');
-  li.textContent = wine.type;
+  li.textContent = 'Type: ' + wine.type;
   ul.appendChild(li);
 
   li = document.createElement('li');
-  li.textContent = wine.color;
+  li.textContent = 'Color:' + wine.color;
   ul.appendChild(li);
 
   li = document.createElement('li');
-  li.textContent = wine.flavor;
+  li.textContent = 'Flavor: '+ wine.flavor;
   ul.appendChild(li);
 
   li = document.createElement('li');
-  li.textContent = wine.rating;
+  li.textContent = 'Rating: ' + wine.rating;
   ul.appendChild(li);
 
   li = document.createElement('li');
-  li.textContent = wine.cost;
+  li.textContent = 'Cost: ' + wine.cost;
   ul.appendChild(li);
 
   li = document.createElement('li');
-  li.textContent = wine.yearProduced;
+  li.textContent = 'Year Produced: ' + wine.yearProduced;
   ul.appendChild(li);
 
   li = document.createElement('li');
-  li.textContent = wine.review;
+  li.textContent = 'Review: ' + wine.review;
   ul.appendChild(li);
   dataDiv.appendChild(ul);
 
@@ -220,25 +227,23 @@ function displayWine(wine){
     //might have to comment out later.
     updatedWine();
   });
-  // var btn = document.createElement('button');
-  // btn.innerHTML = 'Delete Wine';
-  // btn.addEventListener('click', function(e){
-  //   e.preventDefault();
-  //   // wineInfo(wine);
-  //   deleteWine(wine);
-  //   // document.updateWineForm.name.focus();
-  //   document.deleteWineForm.deletedWine.value;
-  // });
-  // dataDiv.appendChild(btn);
-  
-  document.deleteWineForm.delete.addEventListener('click', function(e){
+  let btn2 = document.createElement('button');
+  btn2.innerHTML = 'Delete Wine';
+  btn2.addEventListener('click', function(e){
     e.preventDefault();
-    var deletedWine = document.deleteWineForm.deletedWine.value;
-    deleteWine(id);
+    wineInfo(wine);
+    // deleteWine(id);
+    // document.updateWineForm.name.focus();
+    document.deleteWineForm.deletedWine.value;
   });
-  dataDiv.appendChild(btn);
+  dataDiv.appendChild(btn2);
 
-  // btn.addEventListener('click', wineInfo(wine));
+  document.deleteWineForm.delete.addEventListener('click', function(e){
+      e.preventDefault();
+    deleteWineById(id);
+
+    });
+  
 }
 //create a new Wine 'POST';
 function postNewWine(event){
@@ -326,14 +331,20 @@ function updatedWine(){
 
 // xhr.open('DELETE', api/winetracker/' + wineId);
 // xhr.send();
-function deleteWine(id){
-  let xhr = new XMLHttpRequest();
-  let div = document.getElementById('wineData');
+function deleteWineById(id){
+  var xhr = new XMLHttpRequest();
+  // let div = document.getElementById('wineData');
+  // div.textContent = '';
   xhr.open('DELETE', 'api/wines/' + id);
   xhr.onreadystatechange = function(){
     if(xhr.readyState === 4){
       if(xhr.status === 204){
-        div.textContent = 'Wine Deleted';
+        var div = document.getElementById('wineData');
+        div.textContent = '';
+        // div.textContent = 'Wine Deleted';
+        var deleted = document.createElement('h2');
+        deleted.textContent = 'Wine Deleted';
+        div.appendChild(deleted);
         // let wine = JSON.parse(xhr.responseText);
         // displayWine(wine);
       }
@@ -343,6 +354,23 @@ function deleteWine(id){
         div.textContent = 'Wine Not Found';
       }
     } 
+  };
+  xhr.send();
+}
+
+function searchByKeyword(keyword){
+  let xhr = new XMLHttpRequest();
+  xhr.open('GET', 'api/wines/search/' + keyword);
+  xhr.onreadystatechange = function(){
+    if(xhr.readyState === 4){
+      if(xhr.status === 200){
+        let wine = JSON.parse(xhr.responseText);
+        displayWine(wine);
+      }
+      else {
+        console.error('Wine Not Found');
+      }
+    }
   };
   xhr.send();
 }
