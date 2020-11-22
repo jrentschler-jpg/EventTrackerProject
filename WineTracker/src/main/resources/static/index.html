@@ -83,6 +83,40 @@
         /><br />
         <button type="submit" name="lookupNewWine">Add Wine</button>
       </form>
+      <br>
+      <br>
+      <form name="updateWineForm">
+          <input type="hidden" name="id" value="${id}">
+        Name<input type="text" name="name" placeholder="Name" /><br />
+        Type<input type="text" name="type" placeholder="Type" /><br />
+        Color:<input type="text" name="color" placeholder="Color" /><br />
+        Flavor:<input type="text" name="flavor" placeholder="Flavor" /><br />
+        Description<input
+          type="text"
+          name="description"
+          placeholder="Description"
+        /><br />
+        Rating<input type="number" name="rating" placeholder="Rating" /><br />
+        Cost<input type="number" name="cost" placeholder="Cost" /><br />
+        Year Produced<input
+          type="text"
+          name="yearProduced"
+          placeholder="Year Produced"
+        /><br />
+        Review<input type="text" name="review" placeholder="Review" /><br />
+        Image URL<input
+          type="text"
+          name="image"
+          placeholder="Image URL"
+        /><br />
+        <button type="submit" name="updateWine" value="${wine.id}">Update Wine</button>
+      </form>
+
+      <form name="deleteWineForm">
+        <input type="number" name="deletedWine">
+        <button name="delete">Delete Wine by ID</button>
+      </form>
     </div>
   </body>
+
 </html>

@@ -134,7 +134,6 @@ function displayAllWines(wines){
     wineYearProduced.textContent = wine.yearProduced;
     wineReview.textContent = wine.review;
     wineImage.src = wine.image;
-    // wineImage.maxWidth = 100;
     wineImage.height = 100;
     wineImageBox.appendChild(wineImage);
 
@@ -150,7 +149,6 @@ function displayAllWines(wines){
     wineRow.appendChild(wineImageBox);
 
     tableBody.appendChild(wineRow);
-
   });
 
 }
@@ -203,6 +201,44 @@ function displayWine(wine){
   img.width = 300;
   img.height = 300;
   dataDiv.appendChild(img);
+
+  let br = document.createElement('br');
+  dataDiv.appendChild(br);
+
+  let btn = document.createElement('button');
+  btn.innerHTML = 'Update Wine';
+  // btn.addEventListener('click', wineInfo(wine));
+  btn.addEventListener('click', function(e){
+    e.preventDefault();
+    wineInfo(wine);
+    document.updateWineForm.name.focus();
+  });
+  dataDiv.appendChild(btn);
+
+  document.updateWineForm.updateWine.addEventListener('click', function(e){
+    e.preventDefault();
+    //might have to comment out later.
+    updatedWine();
+  });
+  // var btn = document.createElement('button');
+  // btn.innerHTML = 'Delete Wine';
+  // btn.addEventListener('click', function(e){
+  //   e.preventDefault();
+  //   // wineInfo(wine);
+  //   deleteWine(wine);
+  //   // document.updateWineForm.name.focus();
+  //   document.deleteWineForm.deletedWine.value;
+  // });
+  // dataDiv.appendChild(btn);
+  
+  document.deleteWineForm.delete.addEventListener('click', function(e){
+    e.preventDefault();
+    var deletedWine = document.deleteWineForm.deletedWine.value;
+    deleteWine(id);
+  });
+  dataDiv.appendChild(btn);
+
+  // btn.addEventListener('click', wineInfo(wine));
 }
 //create a new Wine 'POST';
 function postNewWine(event){
@@ -238,8 +274,75 @@ function postNewWine(event){
     xhr.send(JSON.stringify(newWine));
     addForm.reset();
 }
+function wineInfo(wine){
+  var updateForm = document.updateWineForm;
+  updateForm.id.value = wine.id;
+  updateForm.name.value = wine.name;
+  updateForm.type.value = wine.type;
+  updateForm.color.value = wine.color;
+  updateForm.flavor.value = wine.flavor;
+  updateForm.description.value = wine.description;
+  updateForm.rating.value = wine.rating;
+  updateForm.cost.value = wine.cost;
+  updateForm.yearProduced.value = wine.yearProduced;
+  updateForm.review.value = wine.review;
+  updateForm.image.value = wine.image;
+}
 //xhr.open('PUT', api/winetracker/wineId);
 // xhr.send(JSON.stringify(updatedWine))
+//update the wine
+function updatedWine(){
+  var updateForm = document.updateWineForm;
+  var updatedWine = {
+    name : updateForm.name.value,
+    type : updateForm.type.value,
+    color : updateForm.color.value,
+    flavor : updateForm.flavor.value,
+    description : updateForm.description.value,
+    rating : updateForm.rating.value,
+    cost : updateForm.cost.value,
+    yearProduced : updateForm.yearProduced.value,
+    review : updateForm.review.value,
+    image : updateForm.image.value
+  };
+  var xhr = new XMLHttpRequest();
+  xhr.open('PUT', 'api/wines/' + updateForm.id.value);
+  xhr.onreadystatechange = function(){
+    if(xhr.readyState === 4){
+      if(xhr.status === 200){
+        var updatedWine = JSON.parse(xhr.responseText);
+        displayWine(updatedWine);
+      }
+      else {
+        console.log('PUT request failed.');
+        console.log(xhr.status + ': ' + xhr.responseText);
+      }
+    }
+  };
+  xhr.setRequestHeader('Content-type', 'application/json');
+  xhr.send(JSON.stringify(updatedWine));
+  updateForm.reset();
+}
 
 // xhr.open('DELETE', api/winetracker/' + wineId);
 // xhr.send();
+function deleteWine(id){
+  let xhr = new XMLHttpRequest();
+  let div = document.getElementById('wineData');
+  xhr.open('DELETE', 'api/wines/' + id);
+  xhr.onreadystatechange = function(){
+    if(xhr.readyState === 4){
+      if(xhr.status === 204){
+        div.textContent = 'Wine Deleted';
+        // let wine = JSON.parse(xhr.responseText);
+        // displayWine(wine);
+      }
+      else {
+        console.error('Wine Not Found');
+        // let div = document.getElementById('wineData');
+        div.textContent = 'Wine Not Found';
+      }
+    } 
+  };
+  xhr.send();
+}
