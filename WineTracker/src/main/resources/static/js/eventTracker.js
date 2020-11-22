@@ -35,12 +35,13 @@ function init() {
   document.searchWinesByRating.lookupByRating.addEventListener('click', function(e){
     e.preventDefault();
     let rating = document.searchWinesByRating.rating.value;
-    searchByYearProduced(rating);
+    searchByRating(rating);
   });
   document.searchWinesByCost.lookupByCost.addEventListener('click', function(e){
     e.preventDefault();
-    let cost = document.searchWinesByCost.cost.value;
-    searchByYearProduced(cost);
+    let costLow = document.searchWinesByCost.costLow.value;
+    let costHigh = document.searchWinesByCost.costHigh.value;
+    searchByCost(costLow, costHigh);
   });
   //TODO: set up event listeners for buttons, etc.
 }
@@ -399,8 +400,8 @@ function searchByKeyword(keyword){
   xhr.onreadystatechange = function(){
     if(xhr.readyState === 4){
       if(xhr.status === 200){
-        let wine = JSON.parse(xhr.responseText);
-        displayWine(wine);
+        let wines = JSON.parse(xhr.responseText);
+        displayAllWines(wines);
       }
       else {
         console.error('Wine Not Found');
@@ -416,7 +417,7 @@ function searchByYearProduced(yearProduced){
     if(xhr.readyState === 4){
       if(xhr.status === 200){
         let year = JSON.parse(xhr.responseText);
-        displayWine(year);
+        displayAllWines(year);
       }
       else {
         console.error('Wine Not Found');
@@ -432,7 +433,7 @@ function searchByRating(rating){
     if(xhr.readyState === 4){
       if(xhr.status === 200){
         let ratings = JSON.parse(xhr.responseText);
-        displayWine(ratings);
+        displayAllWines(ratings);
       }
       else {
         console.error('Wine Not Found');
@@ -443,12 +444,12 @@ function searchByRating(rating){
 }
 function searchByCost(low, high){
   let xhr = new XMLHttpRequest();
-  xhr.open('GET', 'api/wines/search/cost/' + low + high);
+  xhr.open('GET', 'api/wines/search/cost/' + low +'/'+ high);
   xhr.onreadystatechange = function(){
     if(xhr.readyState === 4){
       if(xhr.status === 200){
         let costs = JSON.parse(xhr.responseText);
-        displayWine(costs);
+        displayAllWines(costs);
       }
       else {
         console.error('Wine Not Found');
