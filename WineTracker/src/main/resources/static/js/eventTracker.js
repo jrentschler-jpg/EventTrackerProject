@@ -27,6 +27,21 @@ function init() {
     let keyword1 = document.searchWinesByName.keyword.value;
     searchByKeyword(keyword1);
   });
+  document.searchWinesByYearProduced.lookupByYearProduced.addEventListener('click', function(e){
+    e.preventDefault();
+    let yearMade = document.searchWinesByYearProduced.yearProduced.value;
+    searchByYearProduced(yearMade);
+  });
+  document.searchWinesByRating.lookupByRating.addEventListener('click', function(e){
+    e.preventDefault();
+    let rating = document.searchWinesByRating.rating.value;
+    searchByYearProduced(rating);
+  });
+  document.searchWinesByCost.lookupByCost.addEventListener('click', function(e){
+    e.preventDefault();
+    let cost = document.searchWinesByCost.cost.value;
+    searchByYearProduced(cost);
+  });
   //TODO: set up event listeners for buttons, etc.
 }
 //display the list of wines {GET, 'api/wines'}
@@ -373,6 +388,54 @@ function searchByKeyword(keyword){
       if(xhr.status === 200){
         let wine = JSON.parse(xhr.responseText);
         displayWine(wine);
+      }
+      else {
+        console.error('Wine Not Found');
+      }
+    }
+  };
+  xhr.send();
+}
+function searchByYearProduced(yearProduced){
+  let xhr = new XMLHttpRequest();
+  xhr.open('GET', 'api/wines/search/yearProduced/' + yearProduced);
+  xhr.onreadystatechange = function(){
+    if(xhr.readyState === 4){
+      if(xhr.status === 200){
+        let year = JSON.parse(xhr.responseText);
+        displayWine(year);
+      }
+      else {
+        console.error('Wine Not Found');
+      }
+    }
+  };
+  xhr.send();
+}
+function searchByRating(rating){
+  let xhr = new XMLHttpRequest();
+  xhr.open('GET', 'api/wines/search/rating/' + rating);
+  xhr.onreadystatechange = function(){
+    if(xhr.readyState === 4){
+      if(xhr.status === 200){
+        let ratings = JSON.parse(xhr.responseText);
+        displayWine(ratings);
+      }
+      else {
+        console.error('Wine Not Found');
+      }
+    }
+  };
+  xhr.send();
+}
+function searchByCost(low, high){
+  let xhr = new XMLHttpRequest();
+  xhr.open('GET', 'api/wines/search/cost/' + low + high);
+  xhr.onreadystatechange = function(){
+    if(xhr.readyState === 4){
+      if(xhr.status === 200){
+        let costs = JSON.parse(xhr.responseText);
+        displayWine(costs);
       }
       else {
         console.error('Wine Not Found');
