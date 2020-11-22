@@ -1,15 +1,19 @@
 # EventTrackerProject
 ### Wine Tracker :wine_glass:
 __________________________________________________________
-### Week 12 - REST API Weekend Project 
-Part I of EventTracker [project](https://github.com/SkillDistillery/SD27/blob/master/rest/EventTracker/README.md).
+### Week 12 - REST API Weekend Project
+EventTrackerProject  [project](https://github.com/SkillDistillery/SD27/blob/master/rest/EventTracker/README.md).
 
 #### MySQL Schema
 
 ![alt text](https://raw.githubusercontent.com/jrentschler-jpg/EventTrackerProject/main/DB/winetrackerdb.png "MySQL Schema")
 
 ### Overview:
+Part I:
 This program is designed to be a REST API that creates, reads, updates(replaces), and deletes wine data from a Database that I built using MySQL WorkBench and connecting it to Spring Data JPA.
+
+Part II:
+This program is designed to be a web application that creates, reads, updates(replaces), and deletes wine data from a Database using the REST API from part I of the project. It was built as an HTML frontend with JavaScript by adding scripts to the index page.
 
 ### How to run:
 Access the REST API by the following routes at [WineTracker](http://18.220.240.247:8080/WineTracker/api/wines):
@@ -31,6 +35,7 @@ Access the REST API by the following routes at [WineTracker](http://18.220.240.2
 
 
 ### Technologies used:
+Part I: Backend
 - Java
 - Java Persistence API
 - Spring Boot
@@ -45,14 +50,31 @@ Access the REST API by the following routes at [WineTracker](http://18.220.240.2
 - AWS
 - JUnit testing
 
+Part II: Frontend
+- JavaScript
+- HTML
+- Visual Studios Code (VS)
+- Google Chrome Developer Tool
+- Atom
+
 
 ### Topics implemented:
+Part I:
 - Spring Data JPA - perform CRUD operations.
 - JSON (send/receive)
+- Tomcat 8 on AWS EC2 Instance deployment.
 - Test Driven Development with JUnit Juniper.
+
+Part II:
+- Build out HTML index page using frontend with JavaScript.
+- Send AJAX requests to our Java Controllers to perform CRUD operations.
+- Use JSON to parse responses with JavaScript.
+- Tomcat 8 on AWS EC2 Instance deployment.
+
 
 
 ### Lessons Learned:
+Part I:
 Applying new technologies of REST API to build a better application from the backend to the frontend.
 
 * Create a JPA Project
@@ -63,6 +85,13 @@ Applying new technologies of REST API to build a better application from the bac
   * Use Spring REST annotations.
   * Use Spring Data JPA to perform all CRUD operations.
   * Send and receive JSON.
+
+Part II:
+* Adding scripts to a web application
+* Send asynchronous requests to Java controllers with JavaScript's `XMLHttpRequest`
+* Consume and parse JSON responses with JavaScript
+* Build HTML with JavaScript
+* Send POST/PUT/DELETE requests with `XMLHttpRequest`
 
 ### Stretch Goals:
 Supplemental mappings and controller routes for nested CRUD.
