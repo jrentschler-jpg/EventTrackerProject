@@ -71,6 +71,9 @@ function getWinesById(id){
 }
 //display list of all the wines
 function displayAllWines(wines){
+  let counter = 0;
+  let wineCounter = document.createElement('blockquote');
+
   var wineDiv = document.getElementById('wineData');
   wineDiv.textContent = '';
 
@@ -117,6 +120,7 @@ function displayAllWines(wines){
   table.appendChild(tableBody);
 
   wines.forEach((wine, i) => {
+    counter++;
     var wineRow = document.createElement('tr');
     var wineName = document.createElement('td');
     var wineType = document.createElement('td');
@@ -157,13 +161,24 @@ function displayAllWines(wines){
 
     tableBody.appendChild(wineRow);
   });
+  wineCounter.textContent = counter + " wines found";
+wineDiv.appendChild(wineCounter);
+// wineDiv.appendChild(ul);
 
 }
 //displays the wine by id 
 function displayWine(wine){
+  // let counter = 0;
+  // let wineCounter = document.createElement('blockquote');
+
   var dataDiv = document.getElementById('wineData');
   dataDiv.textContent = '';
+  // let ul = document.createElement('ul');
 
+    // for (let index = 0; index < wine.length; index++) {
+    //   counter++;
+      
+    
   let h1 = document.createElement('h1');
   h1.textContent = wine.name;
   dataDiv.appendChild(h1);
@@ -208,6 +223,10 @@ function displayWine(wine){
   img.width = 300;
   img.height = 300;
   dataDiv.appendChild(img);
+// }
+// wineCounter.textContent = counter + " wines found";
+// dataDiv.appendChild(wineCounter);
+// dataDiv.appendChild(ul);
 
   let br = document.createElement('br');
   dataDiv.appendChild(br);
