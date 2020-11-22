@@ -16,8 +16,8 @@ Part II:
 This program is designed to be a web application that creates, reads, updates(replaces), and deletes wine data from a Database using the REST API from part I of the project. It was built as an HTML frontend with JavaScript by adding scripts to the index page.
 
 ### How to run:
+Part I:
 Access the REST API by the following routes at [WineTracker](http://18.220.240.247:8080/WineTracker/api/wines):
-
 
 ### Expected Routes:
 
@@ -33,6 +33,10 @@ Access the REST API by the following routes at [WineTracker](http://18.220.240.2
 | `Wine`        |`PUT api/wines/{id}`                              | Replaces an existing wine by id|
 | `void`        |`DELETE api/wines/{id}`                           | Deletes an existing wine by id |
 
+### How to run:
+Part II:
+Application access:  [WineTracker](http://18.220.240.247:8080/WineTracker/api/wines)
+You can get a list of all of the wines, search by the wine id, search by the name of wine or type of wine, add a new wine, update a wine, and delete a wine by the id.
 
 ### Technologies used:
 Part I: Backend
@@ -87,6 +91,8 @@ Applying new technologies of REST API to build a better application from the bac
   * Send and receive JSON.
 
 Part II:
+Understanding the capabilities of REST API to better learn how to connect to:
+
 * Adding scripts to a web application
 * Send asynchronous requests to Java controllers with JavaScript's `XMLHttpRequest`
 * Consume and parse JSON responses with JavaScript
