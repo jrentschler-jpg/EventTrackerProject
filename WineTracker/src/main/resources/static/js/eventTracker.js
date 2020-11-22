@@ -24,8 +24,8 @@ function init() {
   });
   document.searchWinesByName.lookupByKeyword.addEventListener('click', function(e){
     e.preventDefault();
-    var keyword = document.searchWinesByName.keyword.value;
-    searchByKeyword(keyword);
+    let keyword1 = document.searchWinesByName.keyword.value;
+    searchByKeyword(keyword1);
   });
   //TODO: set up event listeners for buttons, etc.
 }
@@ -162,22 +162,14 @@ function displayAllWines(wines){
     tableBody.appendChild(wineRow);
   });
   wineCounter.textContent = counter + " wines found";
-wineDiv.appendChild(wineCounter);
-// wineDiv.appendChild(ul);
+  wineDiv.appendChild(wineCounter);
 
 }
 //displays the wine by id 
 function displayWine(wine){
-  // let counter = 0;
-  // let wineCounter = document.createElement('blockquote');
 
   var dataDiv = document.getElementById('wineData');
   dataDiv.textContent = '';
-  // let ul = document.createElement('ul');
-
-    // for (let index = 0; index < wine.length; index++) {
-    //   counter++;
-      
     
   let h1 = document.createElement('h1');
   h1.textContent = wine.name;
@@ -223,10 +215,6 @@ function displayWine(wine){
   img.width = 300;
   img.height = 300;
   dataDiv.appendChild(img);
-// }
-// wineCounter.textContent = counter + " wines found";
-// dataDiv.appendChild(wineCounter);
-// dataDiv.appendChild(ul);
 
   let br = document.createElement('br');
   dataDiv.appendChild(br);
@@ -246,16 +234,16 @@ function displayWine(wine){
     //might have to comment out later.
     updatedWine();
   });
-  let btn2 = document.createElement('button');
-  btn2.innerHTML = 'Delete Wine';
-  btn2.addEventListener('click', function(e){
-    e.preventDefault();
-    wineInfo(wine);
+  // let btn2 = document.createElement('button');
+  // btn2.innerHTML = 'Delete Wine';
+  // btn2.addEventListener('click', function(e){
+    // e.preventDefault();
+    // wineInfo(wine);
     // deleteWine(id);
     // document.updateWineForm.name.focus();
-    document.deleteWineForm.deletedWine.value;
-  });
-  dataDiv.appendChild(btn2);
+    // document.deleteWineForm.deletedWine.value;
+  // });
+  // dataDiv.appendChild(btn2);
 
   document.deleteWineForm.delete.addEventListener('click', function(e){
       e.preventDefault();
