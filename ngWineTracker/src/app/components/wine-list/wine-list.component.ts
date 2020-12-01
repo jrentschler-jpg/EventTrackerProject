@@ -45,6 +45,29 @@ export class WineListComponent implements OnInit {
   displayTable(): void{
     this.selected = null;
   }
+  addWine(wine: Wine): void{
+    this.wineService.create(wine).subscribe(
+      data => {
+        this.newWine = new Wine();
+        this.reload();
+      },
+      fail => {
+        console.error('Failed in create');
+      }
+    );
+  }
+  updateWine(wine: Wine){
+    this.wineService.update(wine).subscribe(
+      update => {
+        this.editWine = null;
+        this.reload();
+        this.selected = update;
+      },
+      fail => {
+        console.error('Failed to update');
+      }
+    );
+  }
   deleteWine(id: number){
     this.wineService.destroy(id).subscribe(
       deleted => {

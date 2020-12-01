@@ -22,11 +22,28 @@ export class WineService {
       })
     );
   }
+  create(wine: Wine): Observable<Wine>{
+    return this.http.post<Wine>(this.url, wine).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError('WineService.create(): Error retrieving create');
+      })
+    );
+
+  }
+  update(wine: Wine): Observable<Wine>{
+    return this.http.put<Wine>(`${this.url}/${wine.id}`, wine).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError('WineService.update(): Error updating todo');
+      })
+    );
+  }
   destroy(id: number): Observable<boolean>{
     return this.http.delete<boolean>(`${this.url}/${id}`).pipe(
       catchError((err: any) => {
         console.log(err);
-        return throwError('TodoService.destroy(): Error deleting todo');
+        return throwError('WineService.destroy(): Error deleting todo');
       })
     );
   }

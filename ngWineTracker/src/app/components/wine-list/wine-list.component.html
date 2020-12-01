@@ -1,7 +1,19 @@
 <h1>{{title}}: <span>{{getTodoCount()}}</span></h1>
-<div id="wineDetails" *ngIf="selected">
+<div id="wineDetails" *ngIf="selected && !editWine">
   <h2>{{selected.id}}: {{selected.name}}</h2>
-  <p>{{selected.description}}</p>
+  <img [src]="selected.image" height="300"><br>
+  <p>Description: {{selected.description}}</p>
+  <p>Review: {{selected.review}}</p>
+  <p>Flavor: {{selected.flavor}}</p>
+  <hr>
+  <ul>
+    <li>Type: {{selected.type}}</li>
+    <li>Color: {{selected.color}}</li>
+    <li>Year Produced: {{selected.yearProduced}}</li>
+    <li>Rating: {{selected.rating}}</li>
+    <li>Cost: {{selected.cost}}</li>
+
+  </ul>
   <button class="btn btn-secondary" (click)='setEditWine()'>Edit</button>
   <button class="btn btn-primary" (click)='displayTable()'>Back</button>
 </div>
@@ -23,7 +35,7 @@
       <tr *ngFor="let wine of wines">
         <td (click)='displayWine(wine)'>{{wine.name}}</td>
         <td>
-          <img [src]="wine.image" widht="200" height="300">
+          <img [src]="wine.image"  height="300">
         </td>
         <td>{{wine.type}}</td>
         <td>{{wine.description}}</td>
@@ -34,4 +46,23 @@
       </tr>
     </tbody>
   </table>
+  <div *ngIf="!selected">
+    <input type="text" name="newWine" [(ngModel)]="newWine.name" placeholder="Add New Wine Name"><br>
+    <button class="btn btn-success" (click)="addWine(newWine)">Add Wine</button>
+
+  </div>
+</div>
+
+<div *ngIf="editWine">
+  <input type="text" name="name" placeholder="Name" [(ngModel)]="editWine.name"><br>
+  <input type="text" name="description" placeholder="Description" [(ngModel)]="editWine.description"><br>
+  <input type="text" name="review" placeholder="Review" [(ngModel)]="editWine.review"><br>
+  <input type="text" name="flavor" placeholder="Flavor" [(ngModel)]="editWine.flavor"><br>
+  <input type="text" name="type" placeholder="Type" [(ngModel)]="editWine.type"><br>
+  <input type="text" name="color" placeholder="Color" [(ngModel)]="editWine.color"><br>
+  <input type="text" name="yearProduced" placeholder="Year Produced" [(ngModel)]="editWine.yearProduced"><br>
+  <input type="number" name="rating" placeholder="Rating" [(ngModel)]="editWine.rating"><br>
+  <input type="number" name="cost" placeholder="Cost" [(ngModel)]="editWine.cost"><br>
+  <button class="btn-success" type="submit" (click)="updateWine(editWine)" value="Update Wine">Update Wine</button><br>
+
 </div>
