@@ -1,5 +1,6 @@
 import { WineService } from './../../services/wine.service';
 import { Component, OnInit } from '@angular/core';
+import { Wine } from 'src/app/models/wine';
 
 @Component({
   selector: 'app-wine-list',
@@ -9,9 +10,50 @@ import { Component, OnInit } from '@angular/core';
 export class WineListComponent implements OnInit {
   title = 'Wine Tracker';
 
+  wines: Wine[] = [];
+  selected: Wine = null;
+  newWine: Wine = new Wine();
+  editWine: Wine = null;
+
   constructor(private wineService: WineService) { }
 
   ngOnInit(): void {
+    this.reload();
+  }
+  reload(){
+    this.wineService.index().subscribe(
+      wines =>{
+        this.wines = wines;
+      },
+      fail => {
+        console.error("WineListComponent.reload(): error");
+        console.error(fail);
+      }
+    )
+  }
+  getTodoCount(): number{
+    return this.wines.length;
+  }
+
+  displayWine(wine: Wine): void{
+    this.selected = wine;
+  }
+
+  setEditWine(): void{
+    this.editWine = Object.assign({}, this.selected);
+  }
+  displayTable(): void{
+    this.selected = null;
+  }
+  deleteWine(id: number){
+    this.wineService.destroy(id).subscribe(
+      deleted => {
+        this.reload();
+      },
+      fail => {
+        console.error('Failed to delete');
+      }
+    );
   }
 
 }

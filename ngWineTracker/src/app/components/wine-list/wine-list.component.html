@@ -1,1 +1,37 @@
-<h1>{{title}}</h1>
+<h1>{{title}}: <span>{{getTodoCount()}}</span></h1>
+<div id="wineDetails" *ngIf="selected">
+  <h2>{{selected.id}}: {{selected.name}}</h2>
+  <p>{{selected.description}}</p>
+  <button class="btn btn-secondary" (click)='setEditWine()'>Edit</button>
+  <button class="btn btn-primary" (click)='displayTable()'>Back</button>
+</div>
+<div id="wineList" *ngIf="!selected">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Image</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Rating</th>
+        <th>Review</th>
+        <th>Cost</th>
+        <th>Delete?</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let wine of wines">
+        <td (click)='displayWine(wine)'>{{wine.name}}</td>
+        <td>
+          <img [src]="wine.image" widht="200" height="300">
+        </td>
+        <td>{{wine.type}}</td>
+        <td>{{wine.description}}</td>
+        <td>{{wine.rating}}</td>
+        <td>{{wine.review}}</td>
+        <td>{{wine.cost}}</td>
+        <td><button class="btn btn-danger" (click)="deleteWine(wine.id)" type="submit" value="X" >X</button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
