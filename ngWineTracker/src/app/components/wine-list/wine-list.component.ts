@@ -47,9 +47,10 @@ export class WineListComponent implements OnInit {
   }
   addWine(wine: Wine): void{
     this.wineService.create(wine).subscribe(
-      data => {
+      create => {
         this.newWine = new Wine();
         this.reload();
+        this.selected = create;
       },
       fail => {
         console.error('Failed in create');
