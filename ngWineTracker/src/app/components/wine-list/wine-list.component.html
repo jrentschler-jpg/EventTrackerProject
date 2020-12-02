@@ -5,7 +5,7 @@
   <div *ngIf="!selected">
     <h3>Add New Wine</h3>
     Name: <input type="text" name="name" [(ngModel)]="newWine.name" placeholder="Wine Name"><br>
-    Type: <select name="type" ngModel>
+    Type: <select name="type" [(ngModel)]="newWine.type">
       <option selected>Type</option>
       <option value="Pinot Noir">Pinot Noir</option>
       <option value="Chardonnay">Chardonnay</option>
@@ -22,7 +22,7 @@
       <option value="Red Blend">Red Blend</option>
       <option value="Reserva">Reserva</option>
     </select><br>
-    Color: <select name="color" ngModel>
+    Color: <select name="color" [(ngModel)]="newWine.color">
       <option selected>Color</option>
       <option value="Red">Red</option>
       <option value="White">White</option>

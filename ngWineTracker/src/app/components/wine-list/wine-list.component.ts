@@ -54,6 +54,9 @@ export class WineListComponent implements OnInit {
       },
       fail => {
         console.error('Failed in create');
+        console.error(fail);
+        console.error(wine);
+
       }
     );
   }
