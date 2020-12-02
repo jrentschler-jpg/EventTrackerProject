@@ -15,6 +15,9 @@ This program is designed to be a REST API that creates, reads, updates(replaces)
 Part II:
 This program is designed to be a web application that creates, reads, updates(replaces), and deletes wine data from a Database using the REST API from part I of the project. It was built as an HTML frontend with JavaScript by adding scripts to the index page.
 
+Part III:
+The program uses a TypeScript and HTML front-end built with Angular using Visual Studio Code. It is designed to be a web application that creates, reads, updates, and deletes wines data from a database.
+
 ### How to run:
 Part I:
 Access the REST API by the following routes at [WineTracker](http://18.220.240.247:8080/WineTracker/api/wines):
@@ -37,6 +40,10 @@ Access the REST API by the following routes at [WineTracker](http://18.220.240.2
 Part II:
 Application access:  [WineTracker](http://18.220.240.247:8080/WineTracker/).
 You can get a list of all of the wines, search by the wine id, search by the name of wine or type of wine, add a new wine, update a wine, and delete a wine by the id.
+
+Part III:
+Application access: [WineTracker](http://18.220.240.247:8080/WineTracker/).
+You can get a list of all of the wines, click on one of the wines in the table for details, update that wine or delete it. The user can also add a wine, and you can get the total number of wines that are now in the DB.
 
 ### Technologies used:
 Part I: Backend
@@ -61,6 +68,15 @@ Part II: Frontend
 - Google Chrome Developer Tool
 - Atom
 
+Part III: Continuing frontend
+- JavaScript
+- HTML
+- TypeScript
+- Angular
+- Visual Studios Code (VS)
+- Google Chrome Developer Tool
+- Atom
+
 
 ### Topics implemented:
 Part I:
@@ -75,6 +91,11 @@ Part II:
 - Use JSON to parse responses with JavaScript.
 - Tomcat 8 on AWS EC2 Instance deployment.
 
+Part III:
+- Build a front-end with TypeScript, Angular and VS Code.
+- Send asynchronous requests to Java controllers with HTTP to perform CRUD RESTfully.
+- Consume and parse JSON responses with Angular.
+- Tomcat 8 on AWS EC2 Instance deployment.
 
 
 ### Lessons Learned:
@@ -98,6 +119,17 @@ Understanding the capabilities of REST API to better learn how to connect to:
 * Consume and parse JSON responses with JavaScript
 * Build HTML with JavaScript
 * Send POST/PUT/DELETE requests with `XMLHttpRequest`
+
+Part III:
+Understanding the capabilities of Angular and REST API to better learn how to connect to:
+* Configure an Angular application
+* Use:
+  * Components
+  * Services
+  * Directives
+* Send / receive JSON
+* Build HTML with JavaScript
+* Send asynchronous request to Java controller with http
 
 ### Stretch Goals:
 Supplemental mappings and controller routes for nested CRUD. Added additional search functions for the end user to search wines by name/type, year produced, rating, and costs.
