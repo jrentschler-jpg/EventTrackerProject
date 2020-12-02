@@ -33,10 +33,12 @@
     Year Produced: <input type="text" name="yearProduced" [(ngModel)]="newWine.yearProduced" placeholder="Year Produced"><br>
     Cost: <input type="number" name="cost" [(ngModel)]="newWine.cost" placeholder="Cost"><br>
     Image URL: <input type="text" name="image" [(ngModel)]="newWine.image" placeholder="Image URL"><br>
-    <button class="btn btn-success" (click)="addWine(newWine)">Add Wine</button>
-
+    <button class="btn btn-success" (click)="addWine(newWine)">Add Wine</button><br>
+    <br>
   </div>
 </div>
+<hr>
+<h3 style="text-align: center;">Wine Cellar</h3>
 <div id="wineDetails" *ngIf="selected && !editWine">
   <h2>{{selected.id}}: {{selected.name}}</h2>
   <img [src]="selected.image" height="300"><br>
@@ -72,7 +74,7 @@
     <tbody>
       <tr *ngFor="let wine of wines">
         <td (click)='displayWine(wine)'>{{wine.name}}</td>
-        <td>
+        <td style="text-align: center;">
           <img [src]="wine.image"  height="300" class="center">
         </td>
         <td>{{wine.type}}</td>
@@ -84,12 +86,6 @@
       </tr>
     </tbody>
   </table>
-  <!-- <div *ngIf="!selected">
-    <h3>Add New Wine</h3>
-    <input type="text" name="name" [(ngModel)]="newWine.name" placeholder="Add New Wine Name"><br>
-    <button class="btn btn-success" (click)="addWine(newWine)">Add Wine</button>
-
-  </div> -->
 </div>
 
 <div *ngIf="editWine">
