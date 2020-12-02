@@ -35,7 +35,7 @@ Access the REST API by the following routes at [WineTracker](http://18.220.240.2
 
 ### How to run:
 Part II:
-Application access:  [WineTracker](http://18.220.240.247:8080/WineTracker/api/wines).
+Application access:  [WineTracker](http://18.220.240.247:8080/WineTracker/).
 You can get a list of all of the wines, search by the wine id, search by the name of wine or type of wine, add a new wine, update a wine, and delete a wine by the id.
 
 ### Technologies used:
