@@ -1,10 +1,10 @@
 <!-- <script src='https://kit.fontawesome.com/a076d05399.js'></script> -->
 <div class="container-fluid" style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrlWTKsz0dk-3xS_PYzes2vM_Mb0R5WqZxNA&usqp=CAU'); background-repeat: no-repeat; background-position: right top;">
-  <h1>{{title}} <i class="fas fa-wine-glass-alt"></i>: <span>{{getTodoCount()}}</span></h1>
+  <h1>{{title}} <i class="fas fa-wine-glass-alt" style="color:red"></i>: <span>{{getTodoCount()}}</span></h1>
 
   <hr>
   <div *ngIf="!selected">
-    <h3>Add New Wine <i class="fas fa-wine-glass-alt"></i></h3>
+    <h3>Add New Wine <i class="fas fa-wine-glass-alt" style="color: red;"></i></h3>
     Name: <input type="text" name="name" [(ngModel)]="newWine.name" placeholder="Wine Name"><br>
     Type: <select name="type" [(ngModel)]="newWine.type">
       <option selected>Type</option>
