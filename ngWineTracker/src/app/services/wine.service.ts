@@ -1,3 +1,4 @@
+import { environment } from './../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
@@ -9,8 +10,10 @@ import { Wine } from '../models/wine';
 })
 export class WineService {
 
-  private baseUrl = 'http://localhost:8085/';
-  private url = this.baseUrl + 'api/wines'
+  // private baseUrl = 'http://localhost:8085/';
+  // private baseUrl = '/WineTracker/';
+  baseUrl = environment.baseUrl
+  url = this.baseUrl + 'api/wines'
 
   constructor(private http: HttpClient) { }
 
